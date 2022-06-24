@@ -1,4 +1,6 @@
 <?php
+
+$response="";
 $server="localhost";
 $username="root";
 $password="";
@@ -14,15 +16,16 @@ $conn=mysqli_connect($server, $username,$password,$database);
 if(isset($_POST["subscribe"]))
 {
    $email=$_POST["email"];
-$Data=mysqli_query($conn,"INSERT INTO subscribers(email)VALUES('$email')");
-if($Data)
-{
-    echo "Data submitted successfully";
-}
-else
-{
-    echo "Data not submitted";
-}
+    $Data=mysqli_query($conn,"INSERT INTO subscribers(email)VALUES('$email')");
+    if($Data)
+    {
+        $response= "Data submitted successfully";
+        
+    }
+    else
+    {
+        $response= "Data not submitted";
+    }
 
 
 
@@ -46,17 +49,17 @@ else
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-     <nav class="navbar navbar-expand-lg bg-light fixed-top shadow " style="padding:0px;">
+ <nav class="navbar navbar-expand-lg bg-light fixed-top shadow " style="padding:0px;">
         <div class="container-fluid">
             <a href="#" class="navbar-brand">Zalego Academy</a><!--this is for creating the side branding which sends you to home page-->
             <button class="navbar-toggler " type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-expanded="false"><!--the target is used to show when you click the button it will open the id you have specified-->
-                <span class="navbar-toggler-icon "></span><!--for the  icon -->
+                 <span class="navbar-toggler-icon "></span><!--for the  icon -->
             </button>
             <div class="collapse navbar-collapse" id="navbar"><!--this is the id being refrenced above-->
                 <div class="navbar-nav">
-                    <a href="index.php" class="nav-link active">Home</a>
-                    <a href="#" class="nav-link">About Us</a>
-                    <a href="#" class="nav-link">Contact Us</a>
+                    <a href="index.php" class="nav-link">Home</a>
+                    <a href="#" class="nav-link active">About Us</a>
+                    <a href="enroll.php" class="nav-link">Enroll</a>
                 </div>
             </div>
         </div>
@@ -98,6 +101,12 @@ else
         <div class="row " >
             <p class=" paragraph form-text">Subscribe to get information,latest news about <br> Zalego Academy </p>
             <form action="aboutus.php" method="POST">
+                <?php  
+                    if($response)
+                    {
+                        include($_SERVER['DOCUMENT_ROOT'].'/web1-projects/Bootstrap-Grid-Layout/response.php');
+                    }
+                 ?>
                 <div class="row align-items-center"> 
                     <div class="col-8" >
                         <input type="text" name="email" class="form-control"  placeholder="Your email address">

@@ -54,7 +54,7 @@ if(isset($_POST['submitButton']))
                         <div class="navbar-nav">
                             <a href="#" class="nav-link active">Home</a>
                             <a href="aboutus.php" class="nav-link">About Us</a>
-                            <a href="#" class="nav-link">Contact Us</a>
+                            <a href="enroll.php" class="nav-link">Enroll</a>
                         </div>
                     </div>
                 </div>   
