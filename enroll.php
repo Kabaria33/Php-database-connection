@@ -1,3 +1,37 @@
+<?php
+    $server="localhost";
+    $username="root";
+    $password="";
+    $database="zalego";
+    $dataconn=mysqli_connect($server,$username,$password,$database);
+    if(isset($_POST["button"]))
+    {
+        $fullname=$_POST["fullname"];
+        $phonenumber=$_POST["phonenumber"];
+        $gender=$_POST["gender"];
+        $course=$_POST["course"];
+        $email=$_POST["email"];
+        $mydata=mysqli_query($dataconn,"INSERT INTO enrollment(fullname,phonenumber,gender,course,email)VALUES('$fullname','$phonenumber','$gender','$course','$email')");
+        if($mydata)
+            {
+                echo "Data submitted successfully";
+                
+            }
+            else
+            {
+                echo "Data not submitted";
+            }
+
+
+    }
+
+?>
+
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +44,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<nav class="navbar navbar-expand-lg bg-light fixed-top shadow " style="padding:0px;">
+<!-- <nav class="navbar navbar-expand-lg bg-light fixed-top shadow " style="padding:0px;">
         <div class="container-fluid">
             <a href="#" class="navbar-brand">Zalego Academy</a><!--this is for creating the side branding which sends you to home page-->
             <button class="navbar-toggler " type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-expanded="false"><!--the target is used to show when you click the button it will open the id you have specified-->
@@ -25,7 +59,7 @@
             </div>
         </div>
         
-    </nav>
+<!-- </nav> -->
     <main class="p-5 mb-4 bg-light ">
         <h1>JULY SOFTWARE ENGINEERING BOOTCAMP</h1>
         <span><i class="fa fa-calendar"></i></span>
@@ -35,7 +69,7 @@
 
         
     </main> 
-    <form class="container shadow-sm shadow-none-t ">
+    <form  action="enroll.php" method="POST" class="container shadow-sm shadow-none-t ">
     <p class="paragraph form-text fs-6">Looking for a place to kickstart your career in Technology<br>
                                    Whether you're a local , new in town or just cruising through we've got<br>
                                    loads of great tips and events for you </p>
@@ -43,25 +77,25 @@
     <div class="row ">
         <div class="col-lg-6 pb-3 ">
         <label for="message" class="form-label">Full Name :</label>
-        <input type="text" class="form-control shadow" placeholder="Enter your full name">
+        <input type="text"name="fullname" class="form-control shadow" placeholder="Enter your full name">
         </div>
         <div class="col-lg-6 pb-3 ">
         <label for="message" class="form-label">Phone Number:</label>
-        <input type="text" class="form-control shadow" placeholder="+2547......">
+        <input type="text" name="phonenumber" class="form-control shadow" placeholder="+2547......">
         </div>
 
     </div>
     <div class="row ">
         <div class="col-lg-6 pb-3 ">
         <label for="message" class="form-label">Email Address:</label>
-        <input type="email" class="form-control shadow" placeholder="Please enter your email">
+        <input type="email"  name="email" class="form-control shadow" placeholder="Please enter your email">
         </div>
         <div class="col-lg-6 pb-3">
-        <label for="message" class="form-label">What's your gender?</label>
-        <select class="form-control shadow">
+        <label for="message"  class="form-label">What's your gender?</label>
+        <select name="gender"class="form-control shadow">
             <option class=>--Select your gender--</option>
-            <option> Male </option>
-            <option > Female</option>
+            <option value="Male"> Male </option>
+            <option value="Female"> Female</option>
         </select>
 
         </div>
@@ -70,20 +104,20 @@
     <p class="form-text">In order to complete your registration to the bootcamp, you are required to select one course you will be <br> undertaking .Please NOTE that this will be your learning track during the 2-weeks immersion</p>
     <div class="col-7">
         <label for="message" class="form-label">What's your preferred course?</label>
-        <select class="form-control shadow pb-3">
+        <select  name="course"class="form-control shadow pb-3">
                 <option class=>--Select your course--</option>
-                <option> Android App Development</option>
-                <option > Web Design & Development</option>
-                <option >Data Analysis</option>
-                <option >Cyber Security</option>
+                <option value=" Android App Development"> Android App Development</option>
+                <option value="Web Design & Development" > Web Design & Development</option>
+                <option value="Data Analysis" >Data Analysis</option>
+                <option value="Cyber Security">Cyber Security</option>
         </select>
     </div>
     <p class="form-text">You agree by providing your information you understand all our data privacy and protection policy <br>outlined in our Terms & condition and the Privacy Policy statements.</p>
     <input type="checkbox" class="form-check-input" value="" >
     <label  class="pb-3">Agree terms and condition</label><br>
-    <button class="btn btn-primary">Submit application</button>
+    <button  name="button"class="btn btn-primary">Submit application</button>
     </form>
-    <form class="pt-3" >
+    <form  action="aboutus.php" method="POST"class="pt-3" >
             <p class=" paragraph form-text fs-6">Subscribe to get information,latest news about <br> Zalego Academy </p>
                 <div class="row align-items-center"> 
                     <div class="col-8" >
